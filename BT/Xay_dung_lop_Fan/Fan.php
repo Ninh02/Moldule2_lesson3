@@ -2,6 +2,9 @@
 
 class Fan
 {
+    const SLOW=1;
+    const MEDIUM=2;
+    const FAST=3;
     private int $speed;
     private float $radius;
     private string $color;
@@ -17,12 +20,13 @@ class Fan
 
     public function getSpeed(): string
     {
-        if ($this->speed === 1) {
-            return 'slow';
-        } elseif ($this->speed === 2) {
-            return 'medium';
-        } elseif ($this->speed === 3) {
-            return 'fast';
+        switch ($this->speed){
+            case self::SLOW:
+                return "slow";
+            case self::MEDIUM:
+                return "medium";
+            case self::FAST:
+                return "fast";
         }
     }
 
@@ -36,14 +40,14 @@ class Fan
         return $this->color;
     }
 
-    public function OnOff(): bool
+    public function getStatus(): bool
     {
         return $this->status;
     }
 
     public function toString(): string
     {
-        if ($this->OnOff() == true) {
+        if ($this->getStatus()) {
             return "Fan is on {" . "speed=" . $this->getSpeed()."," . "color=" . $this->color .",". "radius=" . $this->radius . "}";
         } else {
             return "Fan is off {" . "speed=" . $this->getSpeed()."," ."color=" . $this->color .",". "radius=" . $this->radius . "}";
